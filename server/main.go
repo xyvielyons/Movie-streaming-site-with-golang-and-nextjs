@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	controller "github.com/xyvielyons/moviestreaming/controllers"
 )
 
 func main() {
@@ -13,6 +14,8 @@ func main() {
 		c.String(200, "Hello, MagicStreamMovies")
 	})
 
+	router.GET("/movies", controller.GetMovies())
+	router.GET("/movie/:imdb_id", controller.GetMovie())
 	// err := router.Run(":8000")
 
 	// if err != nil {
