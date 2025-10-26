@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	controller "github.com/xyvielyons/moviestreaming/controllers"
+	routes "github.com/xyvielyons/moviestreaming/routes"
 )
 
 func main() {
@@ -13,14 +13,9 @@ func main() {
 	router.GET("/hello", func(c *gin.Context) {
 		c.String(200, "Hello, MagicStreamMovies")
 	})
+	routes.SetupUnProtectedRoutes(router)
 
-	router.GET("/movies", controller.GetMovies())
-	router.GET("/movie/:imdb_id", controller.GetMovie())
-	router.POST("/addmovie", controller.AddMovie())
-
-	router.POST("/register", controller.RegisterUser())
-	router.POST("/login", controller.LoginUser())
-
+	routes.SetupProtectedRoutes(router)
 	// err := router.Run(":8000")
 
 	// if err != nil {
