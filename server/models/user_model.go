@@ -20,3 +20,22 @@ type User struct {
 	RefreshToken   string        `json:"refresh_token" bson:"refresh_token"`
 	FavoriteGenres []Genre       `json:"favourite_genres" bson:"favourite_genres" validate:"required,dive"`
 }
+
+//These are our DTO
+//we only expose the data we need to expose to our client without revealing the business logic
+
+type UserLogin struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required,min=6"`
+}
+
+type UserResponse struct {
+	UserId          string  `json:"user_id"`
+	FirstName       string  `json:"first_name"`
+	LastName        string  `json:"last_name"`
+	Email           string  `json:"email"`
+	Role            string  `json:"role"`
+	Token           string  `json:"token"`
+	RefreshToken    string  `json:"refresh_token"`
+	FavouriteGenres []Genre `json:"favourite_genres"`
+}
